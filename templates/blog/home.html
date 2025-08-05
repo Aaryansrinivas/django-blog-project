@@ -56,17 +56,17 @@
         </div>
 
         <!-- Title -->
-        <h4>
+        <h4 class="card-title" style="margin-left: 23px;">
           <a href="{% url 'post_detail' post_id=post.id %}" class="text-decoration-none text-dark">{{ post.title }}</a>
         </h4>
 
         <!-- Image -->
         {% if post.image %}
-          <img src="{{ post.image.url }}" class="img-fluid rounded mb-3 ms-2" style="max-width: 300px; height: auto; width: 300px; " alt="Post Image">
+          <img src="{{ post.image.url }}" class="img-fluid rounded mb-3 ms-4" style="max-width: 300px; height: auto; width: 300px; " alt="Post Image">
         {% endif %}
 
         <!-- Content Preview -->
-        <p>{{ post.content|truncatechars:200 }}</p>
+        <p class="card-title" style="margin-left: 23px;">{{ post.content|truncatechars:200 }}</p>
 
         <!-- Likes and Comments -->
         <div class="d-flex justify-content-between mt-2">
@@ -127,3 +127,4 @@
 </div>
 
 {% endblock %}
+
