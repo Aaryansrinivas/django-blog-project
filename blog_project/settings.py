@@ -24,9 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+82+wv_s^va=a-%(k$r4zv&43w*&k+=f)68_p(0_!gpabhtn(^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1 localhost').split()
+
 
 
 # Application definition
@@ -150,3 +152,4 @@ LOGIN_URL = 'login'
 #CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
 #CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
