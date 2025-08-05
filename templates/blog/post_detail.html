@@ -1,0 +1,117 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<style>
+  .avatar-placeholder {
+    width: 40px;
+    height: 40px;
+    background-color: #0d6efd; /* Bootstrap primary */
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+</style>
+
+
+<div class="container mt-4">
+
+  <!-- Post Card -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h1 class="card-title">{{ post.title }}</h1>
+
+      <!-- Author with Avatar -->
+      <div class="d-flex align-items-center mb-3">
+  {% if post.author.profile.image %}
+    <img src="{{ post.author.profile.image.url }}" alt="Avatar"
+         class="rounded-circle" height="40" width="40">
+  {% else %}
+    <div class="avatar-placeholder">
+      {{ post.author.first_name|default:post.author.username|slice:":1"|upper }}
+    </div>
+  {% endif %}
+  <strong class="ms-2">By {{ post.author }}</strong>
+</div>
+
+
+      {% if post.image %}
+        <img src="{{ post.image.url }}" alt="Post Image" class="img-fluid rounded my-3" style="max-height: 400px;">
+      {% endif %}
+
+      <p class="card-text fs-5">{{ post.content }}</p>
+
+      <p class="text-muted">
+        <i class="bi bi-calendar3"></i> {{ post.date_created|date:"F j, Y, g:i a" }}
+      </p>
+    </div>
+  </div>
+
+  <a href="{% url 'home' %}" class="btn btn-secondary mb-4">← Back to Home</a>
+
+  {% if user.is_authenticated %}
+    <!-- Like Button -->
+    <form method="POST" action="{% url 'like_post' post_id=post.id %}" class="mb-3 d-flex align-items-center gap-2">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-outline-primary">
+        <i class="bi bi-hand-thumbs-up"></i> {{ liked|yesno:"Unlike,Like" }}
+      </button>
+      <span class="text-muted">{{ post.likes.count }} like{{ post.likes.count|pluralize }}</span>
+    </form>
+
+    <!-- Comment Form -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Leave a Comment</h5>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <textarea name="comment" rows="3" class="form-control" placeholder="Write your comment..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">
+            <i class="bi bi-chat-dots"></i> Post Comment
+          </button>
+        </form>
+      </div>
+    </div>
+  {% else %}
+    <div class="alert alert-info">
+      <i class="bi bi-info-circle"></i> You must <a href="{% url 'login' %}">log in</a> to like or comment.
+    </div>
+  {% endif %}
+
+  <!-- Comments Section -->
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title"><i class="bi bi-chat-left-text"></i> Comments</h5>
+
+      {% if comments %}
+        <ul class="list-group list-group-flush">
+          {% for comment in comments %}
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <strong>{{ comment.author.username }}</strong>
+                {% if comment.author == user %}
+                  <span class="badge bg-info text-dark">You</span>
+                {% endif %}
+                <br>
+                {{ comment.content }}
+              </div>
+              <small class="text-muted">{{ comment.date_created|date:"M d, Y H:i" }}</small>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">No comments yet. Be the first to comment!</p>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

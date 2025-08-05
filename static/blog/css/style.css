@@ -1,0 +1,67 @@
+
+/* style.css - Custom Blog Styles */
+
+/* General */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Header & Nav */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar {
+    border-radius: 30px;
+    padding: 10px 20px;
+}
+
+/* Blog Post Cards */
+.list-group-item {
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    transition: box-shadow 0.3s ease;
+}
+.list-group-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Post Detail */
+h1, h2 {
+    font-weight: 700;
+}
+
+.post-actions .btn {
+    margin-right: 0.5rem;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-danger:hover,
+.btn-outline-success:hover {
+    opacity: 0.85;
+}
+
+/* Forms */
+form {
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Footer (optional) */
+footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+}  
