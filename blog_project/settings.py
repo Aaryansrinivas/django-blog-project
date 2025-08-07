@@ -29,9 +29,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG =os.environ.get('DEBUG', 'False') == 'True'
 
 
-ALLOWED_HOSTS = 'django-blog-project.onrender.com',
+ALLOWED_HOSTS = [
     '127.0.0.1',
-    'localhost',
+    'localhost',
+    'django-blog-project.onrender.com',
+]
 
 
 
@@ -160,6 +162,7 @@ LOGIN_URL = 'login'
 #CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
 #CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
 
 
 
