@@ -32,7 +32,7 @@ DEBUG =os.environ.get('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'django-blog-project-hq3g.onrender.com',
+    'django-blog-project-hqt3.onrender.com',
 ]
 
 
@@ -162,6 +162,7 @@ LOGIN_URL = 'login'
 #CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
 #CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
 
 
 
