@@ -52,11 +52,25 @@ INSTALLED_APPS = [
     #'crispy_forms',
     #'crispy_bootstrap5',
     #'tinymce',
+    'cloudinary',
+    'cloudinary_storage',
      
     
-   
 
 ]
+# Cloudinary configuration
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME':  os.getenv('dq1wzuqip'),
+    'API_KEY':  os.getenv('138873371368161'),
+    'API_SECRET':  os.getenv('grWy87oy89muvquhXUPObXclmSY'),
+}
+
+# Media files will be stored in Cloudinary
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+    
+
 CRISPY_ALLOWED_TEMPLATE_PACKS="BOOTSTRAP4"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -162,6 +176,7 @@ LOGIN_URL = 'login'
 #CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
 #CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
 
 
 
